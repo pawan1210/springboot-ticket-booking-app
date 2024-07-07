@@ -6,7 +6,7 @@ import java.util.Map;
 public interface UserService {
     void addUser(User user) throws Exception;
 
-    User findUser(String name);
+    User findUser(String userId);
 
     Map<String, User> getAllUsers();
 }

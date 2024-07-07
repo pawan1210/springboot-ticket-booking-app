@@ -1,6 +1,7 @@
 package com.example.ticketbookingapp.controller;
 
 import java.util.Map;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -69,4 +70,21 @@ public class BookingController {
 
         return ResponseEntity.status(HttpStatus.OK).body(response.constructResponse(cities, null));
     }
-}
+
+    @GetMapping("/get/{userId}")
+    public ResponseEntity<?> getBookingsByUserId(@PathVariable String userId) {
+        ApiResponse<List<Booking>> response = new ApiResponse<>();
+
+        if (userId == null || userId.length() == 0) {
+            return ResponseEntity.badRequest().body(response.constructResponse(null, "userId is required"));
+        }
+
+        try {
+            List<Booking> userBookings = bookingService.getBookingsByUserId(userId);
+
+            return ResponseEntity.status(HttpStatus.OK).body(response.constructResponse(userBookings, null));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response.constructResponse(null, e.getMessage()));
+        }
+    }
+ }

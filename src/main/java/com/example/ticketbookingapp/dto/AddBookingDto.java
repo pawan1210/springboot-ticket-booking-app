@@ -15,9 +15,13 @@ public class AddBookingDto {
     @NotEmpty(message = "seat numbers are required")
     private List<Integer> seats;
 
+    @NotEmpty(message = "userId is required")
+    private String userId;
+
     public Booking toBooking() {
         return new Booking()
         .setSeats(this.seats)
-        .setShowId(this.showId);
+        .setShowId(this.showId)
+        .setUserId(this.userId);
     }
 }

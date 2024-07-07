@@ -2,6 +2,7 @@ package com.example.ticketbookingapp.model;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
 
 public class Show {
     private Map<Integer, Seat> seats;
@@ -20,8 +21,12 @@ public class Show {
         }
     }
 
-    public Show addSeat(Seat seat) {
-        this.seats.get(seat.getNumber()).setBooked(true);
+    public Show addSeats(List<Integer> seats) {
+        if (seats != null) {
+            for (int i=0; i<seats.size(); i++) {
+                this.seats.get(seats.get(i)).setBooked(true);
+            }
+        }
         
         return this;
     }

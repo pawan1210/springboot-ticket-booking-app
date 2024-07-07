@@ -2,6 +2,7 @@ package com.example.ticketbookingapp.service;
 
 import java.util.Map;
 import java.util.UUID;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,5 +50,9 @@ public class ShowServiceImpl implements ShowService {
 
     public Map<String, Show> getAllShows() {
         return this.showRepository.getAllShows();
+    }
+
+    public void fillSeat(String showId, List<Integer> seats) throws Exception {
+        this.showRepository.fillSeat(showId, seats);
     }
 }

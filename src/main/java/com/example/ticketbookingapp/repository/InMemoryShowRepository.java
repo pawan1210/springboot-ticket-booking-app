@@ -2,6 +2,7 @@ package com.example.ticketbookingapp.repository;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
@@ -29,5 +30,13 @@ public class InMemoryShowRepository implements ShowRepository {
 
     public Map<String, Show> getAllShows() {
         return this.shows;
+    }
+
+    public void fillSeat(String showId, List<Integer> seats) throws Exception {
+        if (!this.shows.containsKey(showId)) {
+            throw new Exception("show doesn't exists");
+        }
+
+        this.shows.get(showId).addSeats(seats);
     }
 }

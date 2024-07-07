@@ -6,6 +6,7 @@ public class Booking {
     private String movieId;
     private String theatreId;
     private String showId;
+    private String userId;
     private String id;
     private List<Integer> seats;
 
@@ -21,6 +22,16 @@ public class Booking {
         this.id = id;
 
         return this;
+    }
+
+    public Booking setUserId(String userId) {
+        this.userId = userId;
+
+        return this;
+    }
+
+    public String getUserId() {
+        return this.userId;
     }
 
     public String getMovieId() {
