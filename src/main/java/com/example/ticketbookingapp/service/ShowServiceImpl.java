@@ -1,6 +1,5 @@
 package com.example.ticketbookingapp.service;
 
-import java.util.Map;
 import java.util.UUID;
 import java.util.List;
 
@@ -39,7 +38,7 @@ public class ShowServiceImpl implements ShowService {
 
         String showId = UUID.randomUUID().toString();
 
-        show.setId(showId);
+        show.setId(showId).setCityName(existingTheatre.getCityName()).setTheatreName(existingTheatre.getName());
 
         this.showRepository.addShow(show);
     }
@@ -48,8 +47,10 @@ public class ShowServiceImpl implements ShowService {
         return this.showRepository.findShow(showId);
     }
 
-    public Map<String, Show> getAllShows() {
-        return this.showRepository.getAllShows();
+    public List<Show> getShows(String cityName, String theatreName) {
+        List<Show> shows = this.showRepository.getShows(cityName, theatreName);
+
+        return shows;
     }
 
     public void fillSeat(String showId, List<Integer> seats) throws Exception {

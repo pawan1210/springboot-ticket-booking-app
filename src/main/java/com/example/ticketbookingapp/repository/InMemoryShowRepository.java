@@ -1,5 +1,6 @@
 package com.example.ticketbookingapp.repository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
@@ -28,8 +29,27 @@ public class InMemoryShowRepository implements ShowRepository {
         return this.shows.get(showId);
     }
 
-    public Map<String, Show> getAllShows() {
-        return this.shows;
+    public List<Show> getShows(String cityName, String theatreName) {
+        List<Show> filteredShows = new ArrayList<>();
+
+        for (Map.Entry<String, Show> entry: this.shows.entrySet()) {
+            Show show = (Show) entry.getValue();
+            boolean canAdd = true;
+
+            if (cityName != null && cityName.length() > 0 && !show.getCityName().equals(cityName)) {
+                canAdd = false;
+            }
+
+            if (theatreName != null && theatreName.length() > 0 && !show.getTheatreName().equals(theatreName)) {
+                canAdd = false;
+            }
+
+            if (canAdd) {
+                filteredShows.add(show);
+            }
+        }
+
+        return filteredShows;
     }
 
     public void fillSeat(String showId, List<Integer> seats) throws Exception {

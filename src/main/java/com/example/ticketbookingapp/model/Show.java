@@ -8,7 +8,9 @@ public class Show {
     private Map<Integer, Seat> seats;
     private String id;
     private String theatreId;
+    private String theatreName;
     private String movieId;
+    private String cityName;
     private int totalSeats;
 
     public Show() {
@@ -39,8 +41,10 @@ public class Show {
         return this.id;
     }
 
-    public void setId(String id) {
+    public Show setId(String id) {
         this.id = id;
+
+        return this;
     }
 
     public String getTheatreId() {
@@ -69,5 +73,25 @@ public class Show {
 
     public String getMovieId() {
         return this.movieId;
+    }
+
+    public Show setCityName(String cityName) {
+        this.cityName = cityName;
+
+        return this;
+    }
+
+    public String getCityName() {
+        return this.cityName;
+    }
+
+    public String getTheatreName() {
+        return this.theatreName;
+    }
+
+    public Show setTheatreName(String theatreName) {
+        this.theatreName = theatreName;
+
+        return this;
     }
 }

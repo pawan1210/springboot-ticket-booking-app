@@ -7,6 +7,8 @@ public class Theatre {
     private String cityId;
 
     private String id;
+    
+    private String cityName;
 
     public Theatre() {
 
@@ -42,6 +44,16 @@ public class Theatre {
 
     public Theatre setCityId(String cityId) {
         this.cityId = cityId;
+
+        return this;
+    }
+
+    public String getCityName() {
+        return this.cityName;
+    }
+
+    public Theatre setCityName(String cityName) {
+        this.cityName = cityName;
 
         return this;
     }

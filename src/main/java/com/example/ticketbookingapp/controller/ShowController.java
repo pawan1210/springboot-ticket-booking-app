@@ -1,6 +1,6 @@
 package com.example.ticketbookingapp.controller;
 
-import java.util.Map;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.ticketbookingapp.dto.AddShowDto;
@@ -62,10 +63,13 @@ public class ShowController {
         return ResponseEntity.status(HttpStatus.OK).body(response.constructResponse(show, null));
     }
 
-    @GetMapping("/getall")
-    public ResponseEntity<?> getAllShows() {
-        ApiResponse<Map<String, Show>> response = new ApiResponse<>();
-        Map<String, Show> shows = showService.getAllShows();
+    @GetMapping("/search")
+    public ResponseEntity<?> findShows(
+        @RequestParam(required = false, defaultValue = "") String cityName, 
+        @RequestParam(required = false, defaultValue = "") String theatreName
+    ) {
+        ApiResponse<List<Show>> response = new ApiResponse<>();
+        List<Show> shows = showService.getShows(cityName, theatreName);
 
         return ResponseEntity.status(HttpStatus.OK).body(response.constructResponse(shows, null));
     }

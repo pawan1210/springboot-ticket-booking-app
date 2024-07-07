@@ -33,7 +33,7 @@ public class TheatreServiceImpl implements TheatreService {
 
         String theatreId = UUID.randomUUID().toString();
 
-        theatre.setId(theatreId);
+        theatre.setId(theatreId).setCityId(existingCity.getId()).setCityName(existingCity.getName());
 
         this.theatreRepository.addTheatre(theatre);
     }
